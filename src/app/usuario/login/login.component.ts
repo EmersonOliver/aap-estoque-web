@@ -22,11 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-
     if (this.usuarioForm.invalid) {
-      window.alert('Preencha os campos obrigatórios!')
+      window.alert('Preencha os campos obrigatórios!');
+      this.usuarioForm.get('email').value == null ? this.usuarioForm.get('email').markAsTouched() : null;
+      this.usuarioForm.get('password').value == null ? this.usuarioForm.get('password').markAsTouched() : null;
+
     } else {
-      let account : AccountAuthentication;
+      let account: AccountAuthentication;
       account = this.usuarioForm.value;
       this.usuarioService.loginUsuario(account).subscribe(
         res => {

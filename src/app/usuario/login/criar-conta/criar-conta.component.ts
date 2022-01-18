@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UsuarioModel } from '../../model/usuario.model';
+import { UsuarioService } from '../../usuario.service';
+// import { MustMatch } from './function/must-match.validator';
 
 @Component({
   selector: 'app-criar-conta',
@@ -7,9 +11,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CriarContaComponent implements OnInit {
 
-  constructor() { }
+usuario = {} as UsuarioModel;
+usuarioForm : FormGroup;
+
+  constructor(private usuarioService:UsuarioService) { }
 
   ngOnInit() {
+    this.usuarioForm = new FormGroup({
+      nome: new FormControl(null,[Validators.required]),
+      sobrenome: new FormControl(null, [Validators.required]),
+      email: new FormControl(null, [Validators.email, Validators.required]),
+      senha: new FormControl(null, [Validators.required]),
+      repitaSenha: new FormControl(null, [Validators.required]),
+      telefone: new FormControl(null, [Validators.required])
+    });
   }
 
+  onSubmit(){
+    if(this.usuarioForm.invalid){
+      window.alert('Preencha todos os campos para efetuar o cadastro.');
+      this.validarCampoForm(['nome','sobrenome', 'email', 'senha', 'repitaSenha'], this.usuarioForm);
+      return;
+    }
+  }
+
+  validarCampoForm(listaCampos = [], form: FormGroup) {
+    listaCampos.forEach(e => {
+        form.get(e).setValidators([Validators.required]);
+        form.get(e).markAsTouched();
+    });
+}
 }
