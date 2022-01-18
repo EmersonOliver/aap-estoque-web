@@ -11,6 +11,9 @@ import { MenuComponent } from './menu/menu.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { LoginComponent } from './usuario/login/login.component';
+import { EsqueciMinhaSenhaComponent } from './usuario/login/esqueci-minha-senha/esqueci-minha-senha.component';
+import { CriarContaComponent } from './usuario/login/criar-conta/criar-conta.component';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,9 @@ import { LoginComponent } from './usuario/login/login.component';
     MenuComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    EsqueciMinhaSenhaComponent,
+    CriarContaComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,9 @@ import { LoginComponent } from './usuario/login/login.component';
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+  UsuarioService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
