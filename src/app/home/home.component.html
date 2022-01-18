@@ -1,0 +1,148 @@
+<div id="content" >
+
+  <!-- Begin Page Content -->
+  <div  class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+      <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
+
+      <!-- <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Earnings (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalRent | currency:'CHF ':symbol:'.2'}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div [routerLink]="['/operations/salesPosition']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Transactions (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalTransactions}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div [routerLink]="['/support/user']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Registered users (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalUsers}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-calendar fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Registered Products (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalProducts}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div [routerLink]="['/support/user/approve']" class="col-xl-3 col-md-6 mb-4"  style="cursor:pointer">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Users Pending (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalUserAccountPending}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-users fa-2x text-gray-300"></i>
+                <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div [routerLink]="['/support/customer/experience/wishlist']" class="col-xl-3 col-md-6 mb-4"  style="cursor:pointer">
+        <div class="card border-left-danger shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Wishlist Products (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalWishlist}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-heart fa-2x text-gray-300"></i>
+                <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/operations/product-upload']" class="col-xl-3 col-md-6 mb-4"  style="cursor:pointer">
+        <div class="card border-left-secondary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1">Product Upload Pending (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalProductUploadPending}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-clipboard-check fa-2x text-gray-300"></i>
+                <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/support/newsletter']" class="col-xl-3 col-md-6 mb-4"  style="cursor:pointer">
+        <div class="card border-left-dark shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Newsletters (Total)</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{dashboard?.totalNewsletter}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-mail-bulk fa-2x text-gray-300"></i>
+                <!-- <i class="fas fa-clipboard-list fa-2x text-gray-300"></i> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+  </div>
+  <!-- /.container-fluid -->
+
+</div>

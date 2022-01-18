@@ -23,9 +23,20 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "src/styles/fontawesome-free/css/all.min.css",
+              "src/styles/sb-admin-2.css",
+              "src/styles/datatables/dataTables.bootstrap4.min.css"
             ],
-            "scripts": []
+            "scripts": [
+              "src/assets/js/jquery/jquery.min.js",
+              "src/assets/js/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/js/jquery-easing/jquery.easing.min.js",
+              "src/assets/js/sb-admin-2.min.js",
+              "src/assets/js/datatables/jquery.dataTables.min.js",
+              "src/assets/js/datatables/dataTables.bootstrap4.min.js",
+              "src/assets/js/demo/datatables-demo.js"
+            ]
           },
           "configurations": {
             "production": {
