@@ -1,1 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+.link-selection{
+    font-weight: bold;
+    font-size: large;
+    transition: width 2s, height 2s, transform 2s;
+    padding: 1vmin;
+    border-radius: 5px;
+    background-color: #4e73df;
+    transition: background-color 1.0s ease;
+    color: #fff;
+}
+.link-selection:hover{
+    transition: background-color 1.0s ease;
+    transition: color 0.5s ease;
+    color: #4e73df;
+    text-decoration: none;
+    background-color: #fff;
+}

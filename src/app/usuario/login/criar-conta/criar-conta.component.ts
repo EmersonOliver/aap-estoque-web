@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AppUtils } from 'src/app/AppUtils';
 import { UsuarioModel } from '../../model/usuario.model';
 import { UsuarioService } from '../../usuario.service';
 // import { MustMatch } from './function/must-match.validator';
@@ -30,15 +31,8 @@ usuarioForm : FormGroup;
   onSubmit(){
     if(this.usuarioForm.invalid){
       window.alert('Preencha todos os campos para efetuar o cadastro.');
-      this.validarCampoForm(['nome','sobrenome', 'email', 'senha', 'repitaSenha'], this.usuarioForm);
+      AppUtils.validarForm(['nome','sobrenome', 'email', 'senha', 'repitaSenha'], this.usuarioForm);
       return;
     }
   }
-
-  validarCampoForm(listaCampos = [], form: FormGroup) {
-    listaCampos.forEach(e => {
-        form.get(e).setValidators([Validators.required]);
-        form.get(e).markAsTouched();
-    });
-}
 }

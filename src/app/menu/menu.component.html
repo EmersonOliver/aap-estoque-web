@@ -1,5 +1,5 @@
 <!-- *ngIf="userService.user.token" -->
-<ul *ngIf="true" class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+<ul *ngIf="true" class="navbar-nav bg-gradient-light sidebar sidebar-light accordion"
     id="accordionSidebar">
 
   <!-- Sidebar - Brand -->
@@ -7,8 +7,7 @@
     <!-- <div class="sidebar-brand-icon rotate-n-15">
       <i class="fas fa-laugh-wink"></i>
     </div> -->
-    <img src="assets/img/Logo.png" style="max-height:40px; object-fit: contain; "/>
-    <div class="sidebar-brand-text mx-3">Sharealook</div>
+    <img src="assets/img/hexait_logo.jpg" style="max-height:40px; object-fit: contain; "/>
   </a>
 
   <!-- Divider -->
@@ -32,19 +31,16 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
       <i class="fas fa-fw fa-wrench"></i>
-      <span>Support Tables</span>
+      <span>Consultas</span>
     </a>
 
     <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-        <a class="collapse-item" [routerLink]="['/support/user']">Users</a>
-        <a class="collapse-item" [routerLink]="['/support/user/approve']">Users Pending</a>
-        <a class="collapse-item" [routerLink]="['/support/brand']">Brand</a>
-        <a class="collapse-item" [routerLink]="['/support/category']">Category</a>
-        <a class="collapse-item" [routerLink]="['/support/color']">Color</a>
-        <a class="collapse-item" [routerLink]="['/support/size']">Size</a>
-        <a class="collapse-item" [routerLink]="['/support/occasion']">Occasion</a>
+        <a class="collapse-item" [routerLink]="['/support/user']">Equipamentos</a>
+        <a class="collapse-item" [routerLink]="['/support/user/approve']">Usuários</a>
+        <a class="collapse-item" [routerLink]="['/support/brand']">Fabricantes</a>
+        <a class="collapse-item" [routerLink]="['/support/category']">Departamentos</a>
         <!-- <a class="collapse-item">Rental Positions</a> -->
         <!-- <a class="collapse-item">KPI's</a> -->
       </div>
@@ -55,13 +51,14 @@
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
       <i class="fas fa-fw fa-cog"></i>
-      <span>Operations Positions</span>
+      <span>Operações</span>
     </a>
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <!-- <h6 class="collapse-header">Custom Components:</h6> -->
-        <a class="collapse-item" [routerLink]="['operations/salesPosition']">Sales Positions</a>
-        <a class="collapse-item" [routerLink]="['operations/product-upload']">Products Upload's</a>
+        <a class="collapse-item" [routerLink]="['/support/user']">Cadastrar Equipamentos</a>
+        <a class="collapse-item" [routerLink]="['operations/salesPosition']">Entrada & Saida</a>
+        <a class="collapse-item" [routerLink]="['operations/product-upload']">Inventário</a>
         <!-- <a class="collapse-item">Rental Positions</a> -->
         <!-- <a class="collapse-item">KPI's</a> -->
       </div>
@@ -69,42 +66,16 @@
   </li>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
-      <i class="fas fa-rocket"></i>
-      <span>Customer</span>
-    </a>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" [routerLink]="['/support/customer/sponsors']">Sponsors</a>
-        <a class="collapse-item" [routerLink]="['/support/customer/membership']">MemberShip</a>
-      </div>
-    </div>
-  </li>
-
-  <li class="nav-item">
-    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
-      <i class="fas fa-ticket-alt"></i>
-      <span>Coupon</span>
-    </a>
-    <div id="collapseFour" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" [routerLink]="['/support/coupons/types']">Coupon Type</a>
-        <a class="collapse-item" [routerLink]="['/support/coupons']">Coupon</a>
-        <a class="collapse-item" [routerLink]="['/support/coupons/position']">Coupon Position</a>
-      </div>
-    </div>
-  </li>
 
   <li class="nav-item">
     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseFive">
-      <i class="far fa-id-card"></i>
-      <span>Associated</span>
+      <i class="fas fa-table"></i>
+      <span>Relatórios</span>
     </a>
     <div id="collapseFive" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" [routerLink]="['/support/associateds/types']">Associated Type</a>
-        <a class="collapse-item" [routerLink]="['/support/associateds']">Associated</a>
+        <a class="collapse-item" [routerLink]="['/support/associateds/types']">Equipamentos</a>
+        <a class="collapse-item" [routerLink]="['/support/associateds']">Entrada & Saída</a>
       </div>
     </div>
   </li>

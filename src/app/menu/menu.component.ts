@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+declare var $ :any;
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
@@ -11,5 +13,11 @@ export class MenuComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  sidebarToggle() {
+    $("body").toggleClass("sidebar-toggled");
+    $(".sidebar").toggleClass("toggled");
+    if ($(".sidebar").hasClass("toggled")) {
+      $('.sidebar .collapse').collapse('hide');
+    };
+  }
 }

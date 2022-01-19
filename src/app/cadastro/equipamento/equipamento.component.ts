@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { AppUtils } from 'src/app/AppUtils';
 
 @Component({
   selector: 'app-equipamento',
@@ -33,15 +36,33 @@ export class EquipamentoComponent implements OnInit {
       texto: 'Fora do Estoque'
     }
 
-  ]
+  ];
 
-  constructor() { }
+  equipamentoForm: FormGroup;
+
+  constructor(public spinner: NgxSpinnerService) { }
 
   ngOnInit() {
+
+    this.equipamentoForm = new FormGroup({
+      nome: new FormControl(null, [Validators.required]),
+      modelo: new FormControl(null, [Validators.required]),
+      numeroSerie: new FormControl(null, [Validators.required]),
+      patrimonio: new FormControl(null, [Validators.required]),
+      cor: new FormControl(null, [Validators.required]),
+      status: new FormControl(null, [Validators.required]),
+      fabricante: new FormControl(null, [Validators.required]),
+      departamento: new FormControl(null, [Validators.required])
+    });
+  }
+  onSubmit() {
+    if (this.equipamentoForm.invalid) {
+      window.alert('Preencha todos os campos obrigatórios.')
+      AppUtils.validarForm(['nome', 'modelo', 'numeroSerie', 'patrimonio', 'cor', 'status'], this.equipamentoForm);
+      return;
     }
 
-  onChangeStatus(event){
-    console.log(event.target.value)
+
   }
 
 }

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +18,8 @@ import { EquipamentoComponent } from './cadastro/equipamento/equipamento.compone
 import { EntradaComponent } from './cadastro/entrada/entrada.component';
 import { SaidaComponent } from './cadastro/saida/saida.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { EquipamentoService } from './cadastro/equipamento/equipamento.service';
 
 @NgModule({
   declarations: [
@@ -41,9 +42,12 @@ import { CadastroComponent } from './cadastro/cadastro.component';
     ReactiveFormsModule,
     FormsModule,
     NgxMaskModule.forRoot(),
+    NgxSpinnerModule
   ],
   providers: [
-  UsuarioService
+  UsuarioService,
+  EquipamentoService
+  
   ],
   bootstrap: [AppComponent]
 })
