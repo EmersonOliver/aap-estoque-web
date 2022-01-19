@@ -1,0 +1,38 @@
+<div class="container">
+
+  <div class="card">
+    
+    <div class="card-header">
+      <h5 class="card-title">Cadastro de Equipamento</h5>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4 py-2" >
+          
+          <input type="text" placeholder="Nome do Equipamento" class="form-control">
+        </div>
+        <div class="col-sm-4 py-2">
+          <input type="text" placeholder="Modelo do Equipamento" class="form-control">
+        </div>
+        <div class="col-sm-4 py-2">
+          <input type="text" placeholder='Nº de Série' class="form-control">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-4 py-2">
+          <input type="text" placeholder="Patrimônio" class="form-control">
+        </div>
+        <div class="col-sm-4 py-2">
+          <input type="text" placeholder="Cor" class="form-control">
+        </div>
+        <div class="col-sm-4 py-2">
+          <select name="status" (change)="onChangeStatus($event)" class="form-control"> 
+            <option [value]="null" [disabled]='true'>Selecione</option>
+            <option *ngFor="let i of listaStatus" [value]="i.value">{{i.texto}}</option>
+          </select>
+        </div>
+      </div>
+        <button type='submit' class="btn btn-primary btn-sm float-right" >Cadastrar Equipamento</button> 
+    </div>
+  </div>
+</div>

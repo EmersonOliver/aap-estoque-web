@@ -15,6 +15,10 @@ import { LoginComponent } from './usuario/login/login.component';
 import { EsqueciMinhaSenhaComponent } from './usuario/login/esqueci-minha-senha/esqueci-minha-senha.component';
 import { CriarContaComponent } from './usuario/login/criar-conta/criar-conta.component';
 import { UsuarioService } from './usuario/usuario.service';
+import { EquipamentoComponent } from './cadastro/equipamento/equipamento.component';
+import { EntradaComponent } from './cadastro/entrada/entrada.component';
+import { SaidaComponent } from './cadastro/saida/saida.component';
+import { CadastroComponent } from './cadastro/cadastro.component';
 
 @NgModule({
   declarations: [
@@ -24,8 +28,11 @@ import { UsuarioService } from './usuario/usuario.service';
     HeaderComponent,
     LoginComponent,
     EsqueciMinhaSenhaComponent,
-    CriarContaComponent
-  
+    CriarContaComponent,
+    EquipamentoComponent,
+    EntradaComponent,
+    SaidaComponent,
+    CadastroComponent
   ],
   imports: [
     BrowserModule,
