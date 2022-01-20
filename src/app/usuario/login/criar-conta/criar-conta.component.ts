@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AppUtils } from 'src/app/AppUtils';
 import { UsuarioModel } from '../../model/usuario.model';
 import { UsuarioService } from '../../usuario.service';
+import { UsuarioDTO } from './models/usuario.dto.model';
 // import { MustMatch } from './function/must-match.validator';
 
 @Component({
@@ -13,6 +14,7 @@ import { UsuarioService } from '../../usuario.service';
 export class CriarContaComponent implements OnInit {
 
 usuario = {} as UsuarioModel;
+usuarioDTO = {} as UsuarioDTO;
 usuarioForm : FormGroup;
 
   constructor(private usuarioService:UsuarioService) { }
@@ -33,6 +35,14 @@ usuarioForm : FormGroup;
       window.alert('Preencha todos os campos para efetuar o cadastro.');
       AppUtils.validarForm(['nome','sobrenome', 'email', 'senha', 'repitaSenha'], this.usuarioForm);
       return;
+    }else{
+      this.usuarioDTO = this.usuarioForm.value;
+      this.usuarioService.criarUsuario(this.usuarioDTO).subscribe(
+        res=>{
+          this.usuarioForm.reset();
+
+        }
+      );
     }
   }
 }

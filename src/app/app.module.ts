@@ -20,6 +20,8 @@ import { SaidaComponent } from './cadastro/saida/saida.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoService } from './cadastro/equipamento/equipamento.service';
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
+import { AuthGuardService } from './guards/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -46,7 +48,10 @@ import { EquipamentoService } from './cadastro/equipamento/equipamento.service';
   ],
   providers: [
   UsuarioService,
-  EquipamentoService
+  EquipamentoService,
+  JwtHelperService,
+  AuthGuardService,
+  { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
   
   ],
   bootstrap: [AppComponent]

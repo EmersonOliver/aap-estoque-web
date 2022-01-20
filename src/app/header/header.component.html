@@ -7,7 +7,7 @@
   <div id="content-wrapper" class="d-flex flex-column">
 
     <!-- Topbar -->
-    <nav *ngIf="true"
+    <nav *ngIf="usuarioService?.token?.token"
       class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
    
       <!-- Sidebar Toggle (Topbar) -->
@@ -36,7 +36,7 @@
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
             aria-haspopup="true" aria-expanded="false">
-            <span class="mr-2 d-none d-lg-inline text-gray-600">Emerson Alves</span>
+            <span class="mr-2 d-none d-lg-inline text-gray-600">{{usuarioService?.token?.nome}}</span>
             <!-- <img class="img-profile rounded-circle" > -->
             <!-- <img src="assets/img/Logo.png" style="max-height:30px; object-fit: contain; " /> -->
           </a>

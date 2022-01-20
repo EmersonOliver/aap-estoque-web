@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../usuario/usuario.service';
 
 declare var $ :any;
 
@@ -9,7 +10,7 @@ declare var $ :any;
 })
 export class MenuComponent implements OnInit {
 
-  constructor() { }
+  constructor(public usuarioService:UsuarioService) { }
 
   ngOnInit() {
   }

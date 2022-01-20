@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from '../usuario/usuario.service';
 
 declare var $ : any;
 
@@ -9,9 +10,10 @@ declare var $ : any;
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  constructor(public usuarioService:UsuarioService) { }
 
   ngOnInit() {
+    this.usuarioService.procurarUsuario();
   }
 
   sidebarToggle() {
@@ -20,6 +22,10 @@ export class HeaderComponent implements OnInit {
     if ($(".sidebar").hasClass("toggled")) {
       $('.sidebar .collapse').collapse('hide');
     };
+  }
+
+  logout(){
+    this.usuarioService.logout();
   }
 
 }

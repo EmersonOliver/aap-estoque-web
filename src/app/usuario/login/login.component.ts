@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { AccountAuthentication } from '../model/login.model.dto';
 import { UsuarioService } from '../usuario.service';
 
@@ -11,8 +13,11 @@ import { UsuarioService } from '../usuario.service';
 export class LoginComponent implements OnInit {
 
   usuarioForm: FormGroup
-
-  constructor(private usuarioService: UsuarioService) { }
+  messageError = '';
+  erro = false;
+  constructor(
+    private usuarioService: UsuarioService, 
+    public spinner:NgxSpinnerService, private router:Router) { }
 
   ngOnInit() {
     this.usuarioForm = new FormGroup({
@@ -22,6 +27,8 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
+    this.spinner.show();
+    this.erro = false;
     if (this.usuarioForm.invalid) {
       window.alert('Preencha os campos obrigatórios!');
       this.usuarioForm.get('email').value == null ? this.usuarioForm.get('email').markAsTouched() : null;
@@ -32,9 +39,15 @@ export class LoginComponent implements OnInit {
       account = this.usuarioForm.value;
       this.usuarioService.loginUsuario(account).subscribe(
         res => {
-          console.log(res)
+          this.spinner.hide();
+          this.usuarioService.setUsuario(res);
+          this.usuarioForm.reset();
+          this.router.navigate(['/home']);
+        },error=>{
+          this.erro = true;
+          this.spinner.hide();
+          this.messageError = error;
         }
-
       );
 
     }
