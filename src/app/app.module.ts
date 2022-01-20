@@ -15,7 +15,6 @@ import { EsqueciMinhaSenhaComponent } from './usuario/login/esqueci-minha-senha/
 import { CriarContaComponent } from './usuario/login/criar-conta/criar-conta.component';
 import { UsuarioService } from './usuario/usuario.service';
 import { EquipamentoComponent } from './cadastro/equipamento/equipamento.component';
-import { EntradaComponent } from './cadastro/entrada/entrada.component';
 import { SaidaComponent } from './cadastro/saida/saida.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { NgxSpinnerModule } from "ngx-spinner";
@@ -33,7 +32,6 @@ import { AuthGuardService } from './guards/auth-guard.service';
     EsqueciMinhaSenhaComponent,
     CriarContaComponent,
     EquipamentoComponent,
-    EntradaComponent,
     SaidaComponent,
     CadastroComponent
   ],

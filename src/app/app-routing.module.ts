@@ -7,7 +7,6 @@ import { CriarContaComponent } from './usuario/login/criar-conta/criar-conta.com
 import { EsqueciMinhaSenhaComponent } from './usuario/login/esqueci-minha-senha/esqueci-minha-senha.component';
 import { LoginComponent } from './usuario/login/login.component';
 import { AuthGuardService as AuthGuard } from './guards/auth-guard.service';
-import { EntradaComponent } from './cadastro/entrada/entrada.component';
 import { SaidaComponent } from './cadastro/saida/saida.component';
 
 const routes: Routes = [
@@ -19,7 +18,6 @@ const routes: Routes = [
 children:[
     {path:'', redirectTo:'equipamento', pathMatch:'full'},
     {path:'equipamento', component:EquipamentoComponent},
-    {path:'entrada', component:EntradaComponent},
     {path:'saida',component:SaidaComponent}
 ]}
 ];
