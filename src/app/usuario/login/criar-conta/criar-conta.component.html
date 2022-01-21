@@ -38,9 +38,9 @@
                                         class="form-control form-control-user" id="exampleInputPassword"
                                         placeholder="Senha" required>
                                 </div>
-                                <div class="col-sm-6">
-                                    <input type="password" formControlName="repitaSenha"
-                                        class="form-control form-control-user" id="exampleRepeatPassword"
+                                <div class="col-sm-6" >
+                                    <input type="password"  formControlName="repitaSenha" data-toggle="tooltip" title="Senhas não correspondem" data-placement="right"
+                                        class="form-control form-control-user" id="repeatPass"
                                         placeholder="Repita a senha" required>
                                 </div>
                             </div>
@@ -49,6 +49,16 @@
                             </button>
                         </form>
                         <hr>
+                        <div *ngIf="sucesso" class="col-sm-12">
+                            <div class="alert alert-success text-center text-success">
+                                Cadastro efetuado com sucesso
+                            </div>
+                        </div>
+                        <div *ngIf="erro && messageError != ''" class="col-sm-12">
+                            <div class="alert alert-danger text-center text-danger">
+                                Ocorreu uma falha na requisição {{messageError}}
+                            </div>
+                        </div>
                         <div class="text-center">
                             <a class="small" [routerLink]="['/esqueci-minha-senha']">Esqueceu sua senha?</a>
                         </div>

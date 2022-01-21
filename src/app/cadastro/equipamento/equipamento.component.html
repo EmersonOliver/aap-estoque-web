@@ -8,52 +8,7 @@ type = "square-loader"
 </ngx-spinner>
   <div class="card shadow mb-5 rounded">
     <div class="card-header">
-      <h6 class="card-title font-weight-bold text-primary text-uppercase mb-1">Cadastrar Equipamento</h6>
-    </div>
-    <div class="card-body">
-      <form [formGroup]="equipamentoForm" (ngSubmit)="onSubmit()">
-        <div class="row">
-          <div class="col-sm-4 py-2" >
-            <input formControlName="nome" type="text" placeholder="Nome do Equipamento" class="form-control" required>
-          </div>
-          <div class="col-sm-4 py-2">
-            <input formControlName="modelo" type="text" placeholder="Modelo do Equipamento" class="form-control"required>
-          </div>
-          <div class="col-sm-4 py-2">
-            <input formControlName="numeroSerie" type="text" placeholder='Nº de Série' class="form-control"required>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 py-2">
-            <input formControlName="patrimonio" type="text" placeholder="Patrimônio" class="form-control"required>
-          </div>
-          <div class="col-sm-4 py-2">
-            <input formControlName="cor" type="text" placeholder="Cor" class="form-control"required>
-          </div>
-          <div class="col-sm-4 py-2">
-            <select formControlName="status" name="status" class="form-control"> 
-              <option [value]="null" [disabled]='true'>Selecione</option>
-              <option *ngFor="let i of listaStatus" [value]="i.value">{{i.texto}}</option>
-            </select>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-sm-4 py-2">
-            <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control">
-          </div>
-          <div class="col-sm-4 py-2">
-            <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary float-right">Salvar</button> 
-      </form>
-    </div>
-  </div>
-
-
-  <div *ngIf="false" class="card shadow mb-5 rounded">
-    <div class="card-header">
-      <h6 class="card-title font-weight-bold text-primary text-uppercase mb-1">Filtrar Equipamento</h6>
+      <h6 class="card-title font-weight-bold text-primary text-uppercase mb-1">Equipamento</h6>
     </div>
     <div class="card-body">
       <form [formGroup]="equipamentoForm" (ngSubmit)="onSubmit()">
