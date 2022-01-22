@@ -17,13 +17,20 @@ export class LoginComponent implements OnInit {
   erro = false;
   constructor(
     private usuarioService: UsuarioService, 
-    public spinner:NgxSpinnerService, private router:Router) { }
+    public spinner:NgxSpinnerService, private router:Router) {
+
+      if(this.usuarioService.isLogged()){
+        this.router.navigate(['/home']);
+      }else{
+        this.usuarioForm = new FormGroup({
+          email: new FormControl(null, [Validators.required]),
+          password: new FormControl(null, [Validators.required])
+        });
+      }
+     }
 
   ngOnInit() {
-    this.usuarioForm = new FormGroup({
-      email: new FormControl(null, [Validators.required]),
-      password: new FormControl(null, [Validators.required])
-    });
+   
   }
 
   onSubmit() {

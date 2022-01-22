@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { UsuarioService } from '../usuario/usuario.service';
 
 declare var $ : any;
@@ -10,10 +11,11 @@ declare var $ : any;
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService) { }
+  constructor(public usuarioService:UsuarioService, private router:Router) { }
 
   ngOnInit() {
     this.usuarioService.procurarUsuario();
+    
   }
 
   sidebarToggle() {

@@ -10,7 +10,7 @@ import { AuthGuardService as AuthGuard } from './guards/auth-guard.service';
 import { SaidaComponent } from './cadastro/saida/saida.component';
 
 const routes: Routes = [
-{path:'', component:LoginComponent },
+{path:'',component:LoginComponent },
 {path:'esqueci-minha-senha', component:EsqueciMinhaSenhaComponent},
 {path:'criar-conta', component:CriarContaComponent},
 {path:'home',canActivate: [AuthGuard], component:HomeComponent},
