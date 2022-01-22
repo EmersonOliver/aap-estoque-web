@@ -8,10 +8,11 @@ type = "square-loader"
 </ngx-spinner>
   <div class="card shadow mb-5 rounded">
     <div class="card-header">
-      <h6 class="card-title font-weight-bold text-primary text-uppercase mb-1">Equipamento</h6>
+      <h6 class="card-title font-weight-bold text-primary text-uppercase mb-1">Preencha o formulário</h6>
     </div>
     <div class="card-body">
       <form [formGroup]="equipamentoForm" (ngSubmit)="onSubmit()">
+        <h5><strong>Dados do Equipamento </strong> </h5>
         <div class="row">
           <div class="col-sm-4 py-2" >
             <input formControlName="nome" type="text" placeholder="Nome do Equipamento" class="form-control" required>
@@ -37,13 +38,29 @@ type = "square-loader"
             </select>
           </div>
         </div>
+
+        <hr />
+        <h5><strong>Dados de Localização</strong> </h5>
         <div class="row">
           <div class="col-sm-4 py-2">
-            <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control">
+            <input type="text" placeholder="Cidade" class="form-control">
           </div>
           <div class="col-sm-4 py-2">
-            <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
+            <input type="text" placeholder="Estado" class="form-control">
           </div>
+          <div class="col-sm-4 py-2">
+            <input type="text" placeholder="UF" class="form-control">
+          </div>
+        </div>
+        <hr />
+        <h5><strong>Departamento & Fabricante</strong></h5>
+        <div class="row">
+            <div class="col-sm-4 py-2">
+              <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control">
+            </div>
+            <div class="col-sm-4 py-2">
+              <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
+            </div>
         </div>
         <button type="submit" class="btn btn-primary float-right">Salvar</button> 
       </form>

@@ -34,7 +34,7 @@ export class UsuarioService {
     );
   }
 
-  setUsuario(token:Token){
+  setToken(token:Token){
     this.token = token;
     localStorage.setItem('usuario-estoque', JSON.stringify(token));
     this.messageEvent.emit(token);

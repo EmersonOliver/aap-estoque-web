@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
       this.usuarioService.loginUsuario(account).subscribe(
         res => {
           this.spinner.hide();
-          this.usuarioService.setUsuario(res);
+          this.usuarioService.setToken(res);
           this.usuarioForm.reset();
           this.router.navigate(['/home']);
         },error=>{

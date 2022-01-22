@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppUtils } from 'src/app/AppUtils';
+import { EquipamentoService } from './equipamento.service';
 
 @Component({
   selector: 'app-equipamento',
@@ -40,7 +41,7 @@ export class EquipamentoComponent implements OnInit {
 
   equipamentoForm: FormGroup;
 
-  constructor(public spinner: NgxSpinnerService) { }
+  constructor(public spinner: NgxSpinnerService, public equipamentoService:EquipamentoService) { }
 
   ngOnInit() {
 
