@@ -43,13 +43,13 @@ type = "square-loader"
         <h5><strong>Dados de Localização</strong> </h5>
         <div class="row">
           <div class="col-sm-4 py-2">
-            <input type="text" placeholder="Cidade" class="form-control">
+            <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
           </div>
           <div class="col-sm-4 py-2">
-            <input type="text" placeholder="Estado" class="form-control">
+            <input type="text" formControlName="estado" placeholder="Estado" class="form-control">
           </div>
           <div class="col-sm-4 py-2">
-            <input type="text" placeholder="UF" class="form-control">
+            <input type="text" formControlName="uf" maxlength="2"  placeholder="UF" class="form-control">
           </div>
         </div>
         <hr />
@@ -60,6 +60,9 @@ type = "square-loader"
             </div>
             <div class="col-sm-4 py-2">
               <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
+            </div>
+            <div class="col-sm-4 py-2">
+              <input type="date" class="form-control" (change)="changeDate()" formControlName="dataEntrada">
             </div>
         </div>
         <button type="submit" class="btn btn-primary float-right">Salvar</button> 

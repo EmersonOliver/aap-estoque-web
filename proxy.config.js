@@ -6,6 +6,10 @@ const proxy = [
     {
       context: '/usuario',
       target: 'http://localhost:8080'
+    },
+    {
+      context: '/equipamento',
+      target: 'http://localhost:8080'
     }
   ];
 

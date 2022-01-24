@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -21,6 +21,10 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoService } from './cadastro/equipamento/equipamento.service';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuardService } from './guards/auth-guard.service';
+import localetBR from '@angular/common/locales/br';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localetBR);
 
 @NgModule({
   declarations: [
@@ -50,6 +54,7 @@ import { AuthGuardService } from './guards/auth-guard.service';
   JwtHelperService,
   AuthGuardService,
   { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+  {provide: LOCALE_ID, useValue:'pt-br'}
   
   ],
   bootstrap: [AppComponent]
