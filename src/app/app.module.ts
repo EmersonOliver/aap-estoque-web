@@ -23,6 +23,7 @@ import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuardService } from './guards/auth-guard.service';
 import localetBR from '@angular/common/locales/br';
 import { registerLocaleData } from '@angular/common';
+import { DashboardService } from './home/dashboard.service';
 
 registerLocaleData(localetBR);
 
@@ -53,6 +54,7 @@ registerLocaleData(localetBR);
   EquipamentoService,
   JwtHelperService,
   AuthGuardService,
+  DashboardService,
   { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
   {provide: LOCALE_ID, useValue:'pt-br'}
   

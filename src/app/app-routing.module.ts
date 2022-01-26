@@ -17,7 +17,7 @@ const routes: Routes = [
 {path:'estoque', component:CadastroComponent, 
 children:[
     {path:'', redirectTo:'equipamento', pathMatch:'full'},
-    {path:'equipamento', component:EquipamentoComponent},
+    {path:'equipamento',canActivate: [AuthGuard], component:EquipamentoComponent},
     {path:'saida',component:SaidaComponent}
 ]}
 ];

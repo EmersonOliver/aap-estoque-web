@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { UsuarioService } from '../usuario/usuario.service';
 
 declare var $ : any;
@@ -11,7 +12,8 @@ declare var $ : any;
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public usuarioService:UsuarioService, private router:Router) { }
+  constructor(public usuarioService:UsuarioService,
+     private router:Router) { }
 
   ngOnInit() {
     this.usuarioService.procurarUsuario();
@@ -27,7 +29,8 @@ export class HeaderComponent implements OnInit {
   }
 
   logout(){
-    this.usuarioService.logout();
+      this.usuarioService.logout();
+      window.location.reload();
   }
 
 }

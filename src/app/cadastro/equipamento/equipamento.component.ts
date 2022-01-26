@@ -22,34 +22,21 @@ export class EquipamentoComponent implements OnInit {
   listaStatus = [
     {
       value: 1,
-      texto: 'Indisponível'
+      texto: 'Funcionando'
     },
     {
       value: 2,
-      texto: 'Disponível'
-    },
-    {
-      value: 3,
       texto: 'Danificado'
     },
     {
-      value: 4,
-      texto: 'Em Manutenção'
-    },
-    {
-      value: 5,
-      texto: 'Em Estoque'
-    },
-    {
-      value: 6,
-      texto: 'Fora do Estoque'
+      value: 3,
+      texto: 'Em manutenção'
     }
-
   ];
 
   equipamentoForm: FormGroup;
 
-  constructor(public spinner: NgxSpinnerService, public equipamentoService:EquipamentoService) { }
+  constructor(private spinner: NgxSpinnerService, public equipamentoService:EquipamentoService) { }
 
   ngOnInit() {
     this.equipamentoForm = new FormGroup({
@@ -70,12 +57,14 @@ export class EquipamentoComponent implements OnInit {
     console.log(this.equipamentoForm.value)
   }
   onSubmit() {
+    this.spinner.show();
 
     if (this.equipamentoForm.invalid) {
       window.alert('Preencha todos os campos obrigatórios.')
       AppUtils.validarForm(['nome', 'modelo', 'numeroSerie', 'patrimonio', 
       'cor', 'status','departamento','fabricante','estado','cidade','uf', 'dataEntrada'], 
       this.equipamentoForm);
+      this.spinner.hide();
       return;
     }
 
@@ -113,16 +102,16 @@ export class EquipamentoComponent implements OnInit {
 
     this.equipamentoService.cadastrarEntrada(estoque).subscribe(
       res=>{
-        console.log(res)
+        console.log(res);
+        this.spinner.hide();
       },
       error=>{
-        console.log(error)
+        console.log(error);
+        this.spinner.hide();
       }
     )
   }
 
-  changeDate(){
-    console.log(this.equipamentoForm.get('dataEntrada').value)
-  }
+  
 
 }

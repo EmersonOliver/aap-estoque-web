@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
   erro = false;
   constructor(
     private usuarioService: UsuarioService, 
-    public spinner:NgxSpinnerService, private router:Router) {
+    private spinner:NgxSpinnerService, private router:Router) {
 
       if(this.usuarioService.isLogged()){
         this.router.navigate(['/home']);
@@ -40,7 +40,8 @@ export class LoginComponent implements OnInit {
       window.alert('Preencha os campos obrigatórios!');
       this.usuarioForm.get('email').value == null ? this.usuarioForm.get('email').markAsTouched() : null;
       this.usuarioForm.get('password').value == null ? this.usuarioForm.get('password').markAsTouched() : null;
-
+      this.spinner.hide();
+      return;
     } else {
       let account: AccountAuthentication;
       account = this.usuarioForm.value;

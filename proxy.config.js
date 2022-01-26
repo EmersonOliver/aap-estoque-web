@@ -10,6 +10,14 @@ const proxy = [
     {
       context: '/equipamento',
       target: 'http://localhost:8080'
+    },
+    {
+      context: '/parametros',
+      target: 'http://localhost:8080'
+    },
+    {
+      context: '/dashboard',
+      target: 'http://localhost:8080'
     }
   ];
 
