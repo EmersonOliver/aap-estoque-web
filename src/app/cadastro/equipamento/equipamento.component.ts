@@ -34,6 +34,10 @@ export class EquipamentoComponent implements OnInit {
     }
   ];
 
+  sucesso : boolean = false;
+  erro : boolean = false;
+
+  messageError = '';
   equipamentoForm: FormGroup;
 
   constructor(private spinner: NgxSpinnerService, public equipamentoService:EquipamentoService) { }
@@ -58,7 +62,7 @@ export class EquipamentoComponent implements OnInit {
   }
   onSubmit() {
     this.spinner.show();
-
+    this.reinicializarRequisicao();
     if (this.equipamentoForm.invalid) {
       window.alert('Preencha todos os campos obrigatórios.')
       AppUtils.validarForm(['nome', 'modelo', 'numeroSerie', 'patrimonio', 
@@ -104,14 +108,23 @@ export class EquipamentoComponent implements OnInit {
       res=>{
         console.log(res);
         this.spinner.hide();
+        this.equipamentoForm.reset();
+        this.sucesso = true;
       },
       error=>{
         console.log(error);
         this.spinner.hide();
+        this.erro = true;
+        this.messageError = (error != null || error != '') 
+        ? error : ': Entre em contato com o Administrador do sistema';
       }
-    )
+    );
   }
 
-  
+  reinicializarRequisicao(){
+    this.sucesso = false;
+    this.erro = false;
+    this.messageError = '';
+  }
 
 }

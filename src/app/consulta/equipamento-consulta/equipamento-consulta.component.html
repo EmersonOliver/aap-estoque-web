@@ -1,0 +1,30 @@
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFiltro" aria-expanded="true" aria-controls="collapseFiltro">
+          Filtro
+        </button>
+      </h5>
+    </div>
+
+    <div id="collapseFiltro" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-4">
+            <input type="text" class="form-control" placeholder="Search...">
+          </div>
+          <div class="col-sm-4">
+            <select name="departamento" id="departamento" class="form-control">
+              <option [value]="null" [disabled]="true">Selecione</option>
+            </select>
+          </div>
+        </div>
+
+
+
+      </div>
+    </div>
+  </div>
+  
+</div>

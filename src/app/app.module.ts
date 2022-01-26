@@ -24,6 +24,8 @@ import { AuthGuardService } from './guards/auth-guard.service';
 import localetBR from '@angular/common/locales/br';
 import { registerLocaleData } from '@angular/common';
 import { DashboardService } from './home/dashboard.service';
+import { EquipamentoConsultaComponent } from './consulta/equipamento-consulta/equipamento-consulta.component';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 registerLocaleData(localetBR);
 
@@ -38,7 +40,9 @@ registerLocaleData(localetBR);
     CriarContaComponent,
     EquipamentoComponent,
     SaidaComponent,
-    CadastroComponent
+    CadastroComponent,
+    EquipamentoConsultaComponent,
+    ConsultaComponent
   ],
   imports: [
     BrowserModule,

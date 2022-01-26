@@ -8,18 +8,26 @@ import { EsqueciMinhaSenhaComponent } from './usuario/login/esqueci-minha-senha/
 import { LoginComponent } from './usuario/login/login.component';
 import { AuthGuardService as AuthGuard } from './guards/auth-guard.service';
 import { SaidaComponent } from './cadastro/saida/saida.component';
+import { EquipamentoConsultaComponent } from './consulta/equipamento-consulta/equipamento-consulta.component';
+import { ConsultaComponent } from './consulta/consulta.component';
 
 const routes: Routes = [
-{path:'',component:LoginComponent },
-{path:'esqueci-minha-senha', component:EsqueciMinhaSenhaComponent},
-{path:'criar-conta', component:CriarContaComponent},
-{path:'home',canActivate: [AuthGuard], component:HomeComponent},
-{path:'estoque', component:CadastroComponent, 
-children:[
+  { path: '', component: LoginComponent },
+  { path: 'esqueci-minha-senha', component: EsqueciMinhaSenhaComponent },
+  { path: 'criar-conta', component: CriarContaComponent },
+  { path: 'home', canActivate: [AuthGuard], component: HomeComponent },
+  {
+    path: 'estoque', canActivate: [AuthGuard], component: CadastroComponent,
+    children: [
+      { path: '', redirectTo: 'equipamento', pathMatch: 'full' },
+      { path: 'equipamento', canActivate: [AuthGuard], component: EquipamentoComponent },
+      { path: 'saida', canActivate: [AuthGuard], component: SaidaComponent }
+    ]
+  },
+  {path:'consulta',canActivate: [AuthGuard],  component:ConsultaComponent, children:[
     {path:'', redirectTo:'equipamento', pathMatch:'full'},
-    {path:'equipamento',canActivate: [AuthGuard], component:EquipamentoComponent},
-    {path:'saida',component:SaidaComponent}
-]}
+    {path:'equipamento', canActivate: [AuthGuard], component:EquipamentoConsultaComponent}
+  ]}
 ];
 
 @NgModule({
