@@ -26,6 +26,7 @@ import { registerLocaleData } from '@angular/common';
 import { DashboardService } from './home/dashboard.service';
 import { EquipamentoConsultaComponent } from './consulta/equipamento-consulta/equipamento-consulta.component';
 import { ConsultaComponent } from './consulta/consulta.component';
+import { EquipamentoConsultaService } from './consulta/equipamento-consulta/equipamento-consulta.service';
 
 registerLocaleData(localetBR);
 
@@ -59,6 +60,7 @@ registerLocaleData(localetBR);
   JwtHelperService,
   AuthGuardService,
   DashboardService,
+  EquipamentoConsultaService,
   { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
   {provide: LOCALE_ID, useValue:'pt-br'}
   

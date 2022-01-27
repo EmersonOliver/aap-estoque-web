@@ -1,30 +1,46 @@
 <div id="accordion">
-  <div class="card">
+  <div class="card shadow rounded mb-5">
     <div class="card-header" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseFiltro" aria-expanded="true" aria-controls="collapseFiltro">
+        <button class="btn btn-link font-weight-bold text-primary text-uppercase mb-1" data-toggle="collapse" data-target="#collapseFiltro" aria-expanded="true" aria-controls="collapseFiltro">
           Filtro
         </button>
       </h5>
     </div>
-
     <div id="collapseFiltro" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
         <div class="row">
-          <div class="col-sm-4">
-            <input type="text" class="form-control" placeholder="Search...">
+          <div class="col-sm-3">
+            <input type="text" class="form-control" placeholder="Nome">
           </div>
-          <div class="col-sm-4">
+          <div class="col-sm-3">
             <select name="departamento" id="departamento" class="form-control">
-              <option [value]="null" [disabled]="true">Selecione</option>
+              <option [value]="null" [disabled]="true">Departamento</option>
+              <option *ngFor="let i of params?.departamentos" [value]="i.idDepartamento">{{i.nomeDepartamento}}</option>
             </select>
           </div>
+          <div class="col-sm-3">
+            <select name="fabricante" id="fabricante" class="form-control">
+              <option [value]="null" [disabled]="true">Fabricante</option>
+              <option *ngFor="let i of params?.fabricantes" [value]="i.idFabricante" >{{i.nomeFabricante}}</option>
+            </select>
+          </div>
+          <div class="form-check col-sm-3">
+            <div *ngFor="let i of listaStatus">
+              <input [id]="i.value" type="checkbox" class="form-check-input">
+              <label class="form-check-label" [for]="i.value">
+                {{i.texto}}
+              </label>
+            </div>
+          </div>
         </div>
-
-
-
+        <hr>
+        <div class="row">
+          <div class="col-sm-12 ">
+            <button class="btn btn-primary float-right" type="button">Buscar</button>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  
 </div>
