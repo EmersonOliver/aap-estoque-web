@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { EquipamentoVO } from '../models/equipamento.model.vo';
 import { Params } from '../models/params.model';
 import { EquipamentoConsultaService } from './equipamento-consulta.service';
+declare var $ : any;
 
 @Component({
   selector: 'app-equipamento-consulta',
@@ -30,6 +31,7 @@ export class EquipamentoConsultaComponent implements OnInit {
 
   equipamentos = [];
   buscarForm: FormGroup;
+  equipamentoVO = {} as EquipamentoVO
 
   dropdownListStatus = [];
   dropdownStatus = {};
@@ -82,5 +84,9 @@ export class EquipamentoConsultaComponent implements OnInit {
       );
   }
 
+  detalhar(equipamento:EquipamentoVO){
+    this.equipamentoVO = equipamento;
+    $('#modalDetalhes').modal('show');
+  }
 
 }

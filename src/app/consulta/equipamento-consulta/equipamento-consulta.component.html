@@ -71,7 +71,7 @@ type = "square-loader"
     <div class="table-responsive mb-4">
       <table style="border: #dddfeb solid 1px" class="table table-striped dataTable">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th scope="col">ID</th>
             <th scope="col">Nome</th>
             <th scope="col">Fabricante</th>
@@ -81,22 +81,87 @@ type = "square-loader"
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let i of equipamentos?.content">
+          <tr class="text-center" *ngFor="let i of equipamentos?.content">
             <td>{{i.idEquipamento}}</td>
             <td>{{i.nomeEquipamento}}</td>
             <td>{{i.nomeFabricante}}</td>
             <td>{{i.nomeDepartamento}}</td>
             <td>{{i.statusEquipamento}}</td>
-            <td>
-
+            <td class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col-sm-2 m-2">
+                  <button class="btn btn-primary btn-circle btn-sm" (click)="detalhar(i)" type="button" title="Visualizar detalhes">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+                <div class="col-sm-2 m-2">
+                  <button class="btn btn-warning btn-circle btn-sm" type="button" title="Editar"><i class="fas fa-edit"></i></button>
+                </div>
+              </div>
             </td>
           </tr>
         </tbody>
-
-
-
       </table>
+    </div>
+  </div>
+</div>
 
+
+<!-- Modal -->
+<div class="modal fade" id="modalDetalhes" tabindex="-1" role="dialog" aria-labelledby="modalDetalhesLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDetalhes">Detalhes</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+        <strong>Equipamento:</strong> {{equipamentoVO?.nomeEquipamento}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Fabricante:</strong> {{equipamentoVO?.nomeFabricante}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Departamento:</strong> {{equipamentoVO?.nomeDepartamento}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Nº de Série:</strong> {{equipamentoVO?.numeroSerie}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Patrimônio:</strong> {{equipamentoVO?.patrimonio}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Modelo:</strong> {{equipamentoVO?.modelo}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Cor:</strong> {{equipamentoVO?.cor}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <strong>Status:</strong> {{equipamentoVO?.statusEquipamento}}
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
     </div>
   </div>
 </div>
