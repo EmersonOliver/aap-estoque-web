@@ -1,3 +1,13 @@
+<ngx-spinner 
+bdColor = "rgba(45,85,198,0.71)" 
+size = "medium" 
+color = "#ffffff" 
+type = "square-loader" 
+[fullScreen] = "true">
+<p style="color: white"> Carregando... </p>
+</ngx-spinner>
+
+
 <div id="accordion">
   <div class="card shadow rounded mb-5">
     <div class="card-header" id="headingOne">
@@ -9,38 +19,84 @@
     </div>
     <div id="collapseFiltro" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
+        <form [formGroup]="buscarForm" (ngSubmit)="pesquisar()">
         <div class="row">
           <div class="col-sm-3">
-            <input type="text" class="form-control" placeholder="Nome">
+            <input formControlName="nome" type="text" class="form-control" placeholder="Nome">
           </div>
           <div class="col-sm-3">
-            <select name="departamento" id="departamento" class="form-control">
+            <select formControlName="departamento" name="departamento" id="departamento" class="form-control">
               <option [value]="null" [disabled]="true">Departamento</option>
               <option *ngFor="let i of params?.departamentos" [value]="i.idDepartamento">{{i.nomeDepartamento}}</option>
             </select>
           </div>
           <div class="col-sm-3">
-            <select name="fabricante" id="fabricante" class="form-control">
+            <select formControlName="fabricante" name="fabricante" id="fabricante" class="form-control">
               <option [value]="null" [disabled]="true">Fabricante</option>
               <option *ngFor="let i of params?.fabricantes" [value]="i.idFabricante" >{{i.nomeFabricante}}</option>
             </select>
           </div>
           <div class="form-check col-sm-3">
-            <div *ngFor="let i of listaStatus">
-              <input [id]="i.value" type="checkbox" class="form-check-input">
+            <!-- <div *ngFor="let i of listaStatus">
+              <input formControlName="status"  [id]="i.value" type="checkbox" class="form-check-input">
               <label class="form-check-label" [for]="i.value">
                 {{i.texto}}
               </label>
-            </div>
+            </div> -->
+            <ng-multiselect-dropdown 
+            [placeholder]="'Selecione...'" 
+            [data]="dropdownListStatus"
+            formControlName="status" 
+            [settings]="dropdownStatus">
+          </ng-multiselect-dropdown>
           </div>
         </div>
         <hr>
         <div class="row">
           <div class="col-sm-12 ">
-            <button class="btn btn-primary float-right" type="button">Buscar</button>
+            <button class="btn btn-primary float-right" type="submit">Buscar</button>
           </div>
         </div>
+      </form>
       </div>
+    </div>
+  </div>
+</div>
+
+<div class="card shadow mb-5 rounded">
+  <div class="card-header text-center">
+    <label class="font-weight-bold text-primary text-uppercase mb-1">Resultados</label>
+  </div>
+  <div class="card-body">
+    <div class="table-responsive mb-4">
+      <table style="border: #dddfeb solid 1px" class="table table-striped dataTable">
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Fabricante</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Status</th>
+            <th scope="col">Ações</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let i of equipamentos?.content">
+            <td>{{i.idEquipamento}}</td>
+            <td>{{i.nomeEquipamento}}</td>
+            <td>{{i.nomeFabricante}}</td>
+            <td>{{i.nomeDepartamento}}</td>
+            <td>{{i.statusEquipamento}}</td>
+            <td>
+
+            </td>
+          </tr>
+        </tbody>
+
+
+
+      </table>
+
     </div>
   </div>
 </div>

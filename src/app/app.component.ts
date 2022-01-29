@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { UsuarioService } from './usuario/usuario.service';
 
 @Component({
   selector: 'app-root',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'app-estoque-web';
 
+  constructor(private usuarioService : UsuarioService){
+    if(!this.usuarioService.isLogged()){
+      this.usuarioService.logout();
+    }
+  }
  
 }

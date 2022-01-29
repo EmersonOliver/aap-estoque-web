@@ -3,7 +3,8 @@ import { LOCALE_ID, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -52,7 +53,8 @@ registerLocaleData(localetBR);
     ReactiveFormsModule,
     FormsModule,
     NgxMaskModule.forRoot(),
-    NgxSpinnerModule
+    NgxSpinnerModule,
+    NgMultiSelectDropDownModule
   ],
   providers: [
   UsuarioService,
