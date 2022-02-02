@@ -4,9 +4,10 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CONTEXT_EQUIPAMENTO, CONTEXT_PARAMETROS } from 'src/app/app.api';
 import { ErrorHandler } from 'src/app/app.error-handler';
+import { EquipamentoVO } from 'src/app/core/dtos/equipamento.model.vo';
+import { Params } from 'src/app/core/dtos/params.model';
+import { EquipamentoModel } from 'src/app/core/models/equipamento.model';
 import { Token } from 'src/app/usuario/login/criar-conta/models/token.model';
-import { EquipamentoVO } from '../models/equipamento.model.vo';
-import { Params } from '../models/params.model';
 
 @Injectable({
   providedIn: 'root'
@@ -59,6 +60,12 @@ export class EquipamentoConsultaService {
       );
   }
 
+  detalharEquipamento(idEquipamento:number):Observable<EquipamentoModel>{
+    return this.http.get<any>(`${CONTEXT_EQUIPAMENTO}/detalhar/`+idEquipamento, this.options).pipe(
+      catchError(ErrorHandler.handlerError)
+    );
+  }
+  
   setToken(token: Token) {
     this.token = token;
     let httpHeaders = new HttpHeaders({

@@ -1,14 +1,13 @@
-import { DatePipe } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { AppUtils } from 'src/app/AppUtils';
+import { CidadeDTO } from 'src/app/core/dtos/cidade.dto.model';
+import { DepartamentoDTO } from 'src/app/core/dtos/departamento.dto.model';
+import { EquipamentoDTO } from 'src/app/core/dtos/equipamento.dto.model';
+import { EstoqueDTO } from 'src/app/core/dtos/estoque.dto.model';
+import { FabricanteDTO } from 'src/app/core/dtos/fabricante.dto.model';
 import { EquipamentoService } from './equipamento.service';
-import { CidadeDTO } from './models/cidade.dto.model';
-import { DepartamentoDTO } from './models/departamento.dto.model';
-import { EquipamentoDTO } from './models/equipamento.dto.model';
-import { EstoqueDTO } from './models/estoque.dto.model';
-import { FabricanteDTO } from './models/fabricante.dto.model';
 
 
 

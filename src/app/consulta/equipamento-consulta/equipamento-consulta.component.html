@@ -95,7 +95,7 @@ type = "square-loader"
                   </button>
                 </div>
                 <div class="col-sm-2 m-2">
-                  <button class="btn btn-warning btn-circle btn-sm" type="button" title="Editar"><i class="fas fa-edit"></i></button>
+                  <button class="btn btn-warning btn-circle btn-sm" (click)="selecionar(i.idEquipamento)" type="button" title="Editar"><i class="fas fa-edit"></i></button>
                 </div>
               </div>
             </td>
@@ -130,6 +130,11 @@ type = "square-loader"
         </div>
         <div class="row">
           <div class="col">
+            <strong>Modelo:</strong> {{equipamentoVO?.modelo}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
             <strong>Departamento:</strong> {{equipamentoVO?.nomeDepartamento}}
           </div>
         </div>
@@ -145,11 +150,6 @@ type = "square-loader"
         </div>
         <div class="row">
           <div class="col">
-            <strong>Modelo:</strong> {{equipamentoVO?.modelo}}
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
             <strong>Cor:</strong> {{equipamentoVO?.cor}}
           </div>
         </div>
@@ -161,6 +161,82 @@ type = "square-loader"
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="modalEditar" tabindex="-1" role="dialog" aria-labelledby="modalEditarLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditar">Editar</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editarForm" (ngSubmit)="onEditar()">
+          <h5><strong>Dados do Equipamento </strong> </h5>
+          <div class="row">
+            <div class="col-sm-4 py-2" >
+              <input formControlName="nome" type="text" placeholder="Nome do Equipamento" class="form-control" required>
+            </div>
+            <div class="col-sm-4 py-2">
+              <input formControlName="modelo" type="text" placeholder="Modelo do Equipamento" class="form-control"required>
+            </div>
+            <div class="col-sm-4 py-2">
+              <input formControlName="numeroSerie" type="text" placeholder='Nº de Série' class="form-control"required>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4 py-2">
+              <input formControlName="patrimonio" type="text" placeholder="Patrimônio" class="form-control"required>
+            </div>
+            <div class="col-sm-4 py-2">
+              <input formControlName="cor" type="text" placeholder="Cor" class="form-control"required>
+            </div>
+            <div class="col-sm-4 py-2">
+              <select formControlName="status" name="status" class="form-control"> 
+                <option [value]="null" [disabled]='true'>Selecione</option>
+                <option *ngFor="let i of listaStatus" [value]="i.value">{{i.texto}}</option>
+              </select>
+            </div>
+          </div>
+  
+          <hr />
+          <h5><strong>Dados de Localização</strong> </h5>
+          <div class="row">
+            <div class="col-sm-4 py-2">
+              <input type="text" formControlName="cidade" placeholder="Cidade" class="form-control">
+            </div>
+            <div class="col-sm-4 py-2">
+              <input type="text" formControlName="estado" placeholder="Estado" class="form-control">
+            </div>
+            <div class="col-sm-4 py-2">
+              <input type="text" formControlName="uf" maxlength="2"  placeholder="UF" class="form-control">
+            </div>
+          </div>
+          <hr />
+          <h5><strong>Departamento & Fabricante</strong></h5>
+          <div class="row">
+              <div class="col-sm-4 py-2">
+                <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control">
+              </div>
+              <div class="col-sm-4 py-2">
+                <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
+              </div>
+              <div class="col-sm-4 py-2">
+                <input type="date" class="form-control" formControlName="dataEntrada">
+              </div>
+          </div>
+         
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-info float-right">Editar</button> 
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

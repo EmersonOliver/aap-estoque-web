@@ -26,6 +26,7 @@ const routes: Routes = [
   },
   {path:'consulta',canActivate: [AuthGuard],  component:ConsultaComponent, children:[
     {path:'', redirectTo:'equipamento', pathMatch:'full'},
+    {path:'equipamento/:id', canActivate: [AuthGuard], component:EquipamentoConsultaComponent},
     {path:'equipamento', canActivate: [AuthGuard], component:EquipamentoConsultaComponent}
   ]}
 ];

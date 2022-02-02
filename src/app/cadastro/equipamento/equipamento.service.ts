@@ -4,8 +4,8 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { CONTEXT_EQUIPAMENTO } from 'src/app/app.api';
 import { ErrorHandler } from 'src/app/app.error-handler';
+import { EstoqueDTO } from 'src/app/core/dtos/estoque.dto.model';
 import { Token } from 'src/app/usuario/login/criar-conta/models/token.model';
-import { EstoqueDTO } from './models/estoque.dto.model';
 
 @Injectable({
   providedIn: 'root'
