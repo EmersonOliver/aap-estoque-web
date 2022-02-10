@@ -63,7 +63,7 @@ type = "square-loader"
   </div>
 </div>
 
-<div *ngIf="equipamentos.content" class="card shadow mb-5 rounded">
+<div *ngIf="equipamentos?.content" class="card shadow mb-5 rounded">
   <div class="card-header text-center">
     <label class="font-weight-bold text-primary text-uppercase mb-1">Resultados</label>
   </div>
@@ -82,11 +82,11 @@ type = "square-loader"
         </thead>
         <tbody>
           <tr class="text-center" *ngFor="let i of equipamentos?.content">
-            <td>{{i.idEquipamento}}</td>
-            <td>{{i.nomeEquipamento}}</td>
-            <td>{{i.nomeFabricante}}</td>
-            <td>{{i.nomeDepartamento}}</td>
-            <td>{{i.statusEquipamento}}</td>
+            <td>{{i?.idEquipamento}}</td>
+            <td>{{i?.nome}}</td>
+            <td>{{i?.fabricante?.nomeFabricante}}</td>
+            <td>{{i?.departamento?.nomeDepartamento}}</td>
+            <td>{{getStatus(i?.statusEquipamento)}}</td>
             <td class="d-flex justify-content-center">
               <div class="row">
                 <div class="col-sm-2 m-2">
@@ -103,6 +103,15 @@ type = "square-loader"
         </tbody>
       </table>
     </div>
+  </div>
+</div>
+
+<div *ngIf="equipamentos == null" class="card shadow mb-5 rounded">
+  <div class="card-header text-center">
+    <label class="font-weight-bold text-primary text-uppercase mb-1">Resultados</label>
+  </div>
+  <div class="card-body text-center">
+        Nenhum resultado encontrado <i class="far fa-sad-tear"></i>
   </div>
 </div>
 
@@ -171,7 +180,7 @@ type = "square-loader"
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalEditar">Editar</h5>
+        <h5 class="modal-title" id="modalEditar">Editando...</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -206,6 +215,28 @@ type = "square-loader"
           </div>
   
           <hr />
+          <h5><strong>Departamento & Fabricante</strong></h5>
+          <div class="row">
+              <div class="col-sm-4 py-2">
+                <!-- <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control"> -->
+                <select formControlName="idFabricante" name="departamento" id="departamento" class="form-control">
+                  <option [value]="null" [disabled]="true">Fabricante</option>
+                  <option *ngFor="let i of params?.fabricantes" [value]="i.idFabricante">{{i.nomeFabricante}}</option>
+                </select>
+              </div>
+              <div class="col-sm-4 py-2">
+                <!-- <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control"> -->
+                <select formControlName="idDepartamento" (change)="selectDepartamento()" name="departamento" id="departamento" class="form-control">
+                  <option [value]="null" [disabled]="true">Departamento</option>
+                  <option *ngFor="let i of params?.departamentos" [value]="i.idDepartamento">{{i.nomeDepartamento}}</option>
+                </select>
+              </div>
+              <div class="col-sm-4 py-2">
+                <input type="date" class="form-control" formControlName="dataEntrada">
+              </div>
+          </div>
+         
+          <hr />
           <h5><strong>Dados de Localização</strong> </h5>
           <div class="row">
             <div class="col-sm-4 py-2">
@@ -217,19 +248,6 @@ type = "square-loader"
             <div class="col-sm-4 py-2">
               <input type="text" formControlName="uf" maxlength="2"  placeholder="UF" class="form-control">
             </div>
-          </div>
-          <hr />
-          <h5><strong>Departamento & Fabricante</strong></h5>
-          <div class="row">
-              <div class="col-sm-4 py-2">
-                <input type="text" formControlName="fabricante" placeholder="Fabricante" class="form-control">
-              </div>
-              <div class="col-sm-4 py-2">
-                <input type="text" formControlName="departamento" placeholder="Departamento" class="form-control">
-              </div>
-              <div class="col-sm-4 py-2">
-                <input type="date" class="form-control" formControlName="dataEntrada">
-              </div>
           </div>
          
           <div class="modal-footer">

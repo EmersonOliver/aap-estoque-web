@@ -10,6 +10,7 @@ import { EquipamentoVO } from 'src/app/core/dtos/equipamento.model.vo';
 import { EstoqueDTO } from 'src/app/core/dtos/estoque.dto.model';
 import { FabricanteDTO } from 'src/app/core/dtos/fabricante.dto.model';
 import { Params } from 'src/app/core/dtos/params.model';
+import { CidadeModel } from 'src/app/core/models/cidade.model';
 import { EquipamentoModel } from 'src/app/core/models/equipamento.model';
 import { EquipamentoConsultaService } from './equipamento-consulta.service';
 declare var $ : any;
@@ -125,6 +126,8 @@ export class EquipamentoConsultaComponent implements OnInit {
           this.spinner.hide();
         }
       );
+      this.spinner.hide();
+
   }
 
   detalhar(equipamento:EquipamentoVO){
@@ -195,6 +198,9 @@ export class EquipamentoConsultaComponent implements OnInit {
 
    this.spinner.hide();
   }
+  getStatus(status:number):string{
+    return this.listaStatus.find(x=> x.value === status).texto;
+    }
   toFormEquipamento(e:EquipamentoModel){
     this.editarForm.get('idEquipamento').setValue(e.idEquipamento);
     this.editarForm.get('idFabricante').setValue(e.idFabricante);
@@ -212,6 +218,15 @@ export class EquipamentoConsultaComponent implements OnInit {
     this.editarForm.get('estado').setValue(e.departamento.cidade.estado);
     this.editarForm.get('uf').setValue(e.departamento.cidade.uf);
     this.editarForm.get('dataEntrada').setValue(e.estoque.dataEntrada ? new Date(e.estoque.dataEntrada).toISOString().substring(0,10) : null);
+  }
+
+  selectDepartamento(){
+    let departamento = 
+    this.params.departamentos.find(x=> x.idDepartamento == this.editarForm.get('idDepartamento').value);
+    this.editarForm.get('cidade').setValue(departamento.cidade.cidade);
+    this.editarForm.get('estado').setValue(departamento.cidade.estado);
+    this.editarForm.get('uf').setValue(departamento.cidade.uf);
+
   }
 
 }

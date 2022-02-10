@@ -1,4 +1,7 @@
+import { DepartamentoModel } from "../models/departamento.model";
+import { FabricanteModel } from "../models/fabricante.model";
+
 export interface Params{
-    departamentos:[];
-    fabricantes:[];
+    departamentos:DepartamentoModel[];
+    fabricantes:FabricanteModel[];
 }
