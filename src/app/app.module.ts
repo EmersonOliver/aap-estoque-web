@@ -22,14 +22,14 @@ import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoService } from './cadastro/equipamento/equipamento.service';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 import { AuthGuardService } from './guards/auth-guard.service';
-import localetBR from '@angular/common/locales/br';
+import localetPt from '@angular/common/locales/pt';
 import { registerLocaleData } from '@angular/common';
 import { DashboardService } from './home/dashboard.service';
 import { EquipamentoConsultaComponent } from './consulta/equipamento-consulta/equipamento-consulta.component';
 import { ConsultaComponent } from './consulta/consulta.component';
 import { EquipamentoConsultaService } from './consulta/equipamento-consulta/equipamento-consulta.service';
 
-registerLocaleData(localetBR);
+registerLocaleData(localetPt);
 
 @NgModule({
   declarations: [
@@ -64,7 +64,7 @@ registerLocaleData(localetBR);
   DashboardService,
   EquipamentoConsultaService,
   { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-  {provide: LOCALE_ID, useValue:'pt-br'}
+  {provide: LOCALE_ID, useValue:'pt-BR'}
   
   ],
   bootstrap: [AppComponent]

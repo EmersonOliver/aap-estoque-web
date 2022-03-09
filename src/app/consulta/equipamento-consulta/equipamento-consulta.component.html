@@ -37,12 +37,6 @@ type = "square-loader"
             </select>
           </div>
           <div class="form-check col-sm-3">
-            <!-- <div *ngFor="let i of listaStatus">
-              <input formControlName="status"  [id]="i.value" type="checkbox" class="form-check-input">
-              <label class="form-check-label" [for]="i.value">
-                {{i.texto}}
-              </label>
-            </div> -->
             <ng-multiselect-dropdown 
             [placeholder]="'Selecione...'" 
             [data]="dropdownListStatus"
@@ -76,6 +70,7 @@ type = "square-loader"
             <th scope="col">Nome</th>
             <th scope="col">Fabricante</th>
             <th scope="col">Departamento</th>
+            <th scope="col">Entrada</th>
             <th scope="col">Status</th>
             <th scope="col">Ações</th>
           </tr>
@@ -86,6 +81,7 @@ type = "square-loader"
             <td>{{i?.nome}}</td>
             <td>{{i?.fabricante?.nomeFabricante}}</td>
             <td>{{i?.departamento?.nomeDepartamento}}</td>
+            <td>{{i?.estoque?.dataEntrada | date:'dd/MM/yyyy'}}</td>
             <td class="py-2">
               {{getStatus(i?.statusEquipamento)}}
               <i *ngIf="i?.statusEquipamento == 1" class="fas fa-check text-success "></i>
@@ -110,6 +106,44 @@ type = "square-loader"
       </table>
     </div>
   </div>
+  <nav aria-label="...">
+    <ul class="pagination justify-content-center">
+      <li class="page-item" [class.disabled]="this.page < 2">
+        <span style="cursor: pointer" class="page-link" (click)="this.pageDown()" aria-disabled="true">Anterior</span>
+      </li>
+
+      <li class="page-item" [class.active]="this.page == 1"><a class="page-link" (click)="this.goPage(1)">{{1}}</a></li>
+
+      <ng-container *ngIf="this.page > 3">
+        <li class="page-item"><a class="page-link" (click)="this.goPage(this.page - 2)">...</a></li>
+      </ng-container>
+
+      <ng-container *ngIf="this.page > 2">
+        <li class="page-item"><a class="page-link" (click)="this.goPage(this.page - 1)">{{this.page - 1}}</a></li>
+      </ng-container>
+
+      <ng-container *ngIf="this.page > 1 && this.page < this.lastPage">
+        <li class="page-item active"><a class="page-link">{{this.page}}</a></li>
+      </ng-container>
+
+      <ng-container *ngIf="this.page < (this.lastPage - 1)">
+        <li class="page-item"><a class="page-link" (click)="this.goPage(this.page + 1)">{{this.page + 1}}</a></li>
+      </ng-container>
+      
+      <ng-container *ngIf="this.page < (this.lastPage - 2)">
+        <li class="page-item"><a class="page-link" (click)="this.goPage(this.page + 2)">...</a></li>
+      </ng-container>
+
+
+      <li *ngIf="this.lastPage > 1" class="page-item" [class.active]="this.page == this.lastPage">
+        <a class="page-link" (click)="this.goPage(this.lastPage)">{{this.lastPage}}</a>
+      </li>
+      
+      <li class="page-item" [class.disabled]="this.page == this.lastPage">
+        <span style="cursor: pointer" class="page-link" (click)="this.pageUp()">Próximo</span>
+      </li>
+    </ul>
+  </nav>
 </div>
 
 <div *ngIf="equipamentos == null" class="card shadow mb-5 rounded">
@@ -136,6 +170,11 @@ type = "square-loader"
         <div class="row">
           <div class="col">
         <strong>Equipamento:</strong> {{equipamentoVO?.nome}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+        <strong>Entrada:</strong> {{equipamentoVO?.estoque?.dataEntrada | date:'dd/MM/yyyy'}}
           </div>
         </div>
         <div class="row">
@@ -170,7 +209,10 @@ type = "square-loader"
         </div>
         <div class="row">
           <div class="col">
-            <strong>Status:</strong> {{equipamentoVO?.statusEquipamento}}
+            <strong>Status:</strong> {{equipamentoVO?.statusEquipamento ? getStatus(equipamentoVO?.statusEquipamento) : ''}}
+            <i *ngIf="equipamentoVO?.statusEquipamento == 1" class="fas fa-check text-success "></i>
+            <i *ngIf="equipamentoVO?.statusEquipamento == 3" class="fas fa-wrench text-info"></i>
+            <i *ngIf="equipamentoVO?.statusEquipamento == 2"  class="fas fa-ban text-danger"></i>
           </div>
         </div>
       </div>

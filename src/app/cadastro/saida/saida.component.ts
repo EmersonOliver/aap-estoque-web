@@ -1,4 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { EquipamentoConsultaService } from 'src/app/consulta/equipamento-consulta/equipamento-consulta.service';
+import { Params } from 'src/app/core/dtos/params.model';
+
+declare var $ : any;
 
 @Component({
   selector: 'app-saida',
@@ -6,38 +13,71 @@ import { Component, OnInit, ViewChild } from '@angular/core';
   styleUrls: ['./saida.component.css']
 })
 export class SaidaComponent implements OnInit {
- 
-
- 
-
-
-
-  equipamentos = [
+  listaStatus = [
     {
-      id:1,
-      equipamento:'Notebook'
+      value: 1,
+      texto: 'Funcionando'
     },
     {
-      id:2,
-      equipamento:'Computador'
+      value: 2,
+      texto: 'Danificado'
     },
     {
-      id:3,
-      equipamento:'Switch'
-    },
-    {
-      id:4,
-      equipamento:'Mouse'
+      value: 3,
+      texto: 'Em manutenção'
     }
   ];
 
 
-  
+  params = {} as Params;
+
+  sucesso: boolean = false;
+  erro: boolean = false;
+  messageError = '';
+  dropdownListStatus = [];
+  dropdownStatus = {};
+
+  saidaForm: FormGroup;
+
   ngAfterViewInit(): void { }
 
-  constructor() { }
+  constructor(public consultaService: EquipamentoConsultaService, 
+    private spinner:NgxSpinnerService,
+    private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.inicialiarForm();
+    this.consultaService.carregarParams().subscribe(
+      res => {
+        this.params = res;
+      }
+    ), error => {
+      console.log(error)
+    }
+
+    this.dropdownStatus = {
+      singleSelection: false,
+      textField: 'texto',
+      idField: 'value',
+      selectAllText: 'Todos',
+      unSelectAllText: 'Remover todos',
+      noDataAvailablePlaceholderText: 'Nenhum Status Encontrado',
+      itemsShowLimit: 5,
+      allowSearchFilter: true
+    };
+    this.dropdownListStatus = this.listaStatus;
   }
+
+  inicialiarForm(){
+
+    this.saidaForm = new FormGroup({
+      departamento: new FormControl(null),
+      fabricante: new FormControl(null),
+      status: new FormControl(null)
+    });
+
+  }
+
+
 
 }

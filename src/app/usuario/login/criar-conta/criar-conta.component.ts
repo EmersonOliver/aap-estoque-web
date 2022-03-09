@@ -37,13 +37,14 @@ export class CriarContaComponent implements OnInit {
       senha: [null, Validators.required],
       repitaSenha: [null, Validators.required],
       telefone: [null, Validators.required],
+      cargo: [null, Validators.required]
     }, { validator: MustMatch('senha', 'repitaSenha') });
   }
   
   onSubmit() {
     if (this.usuarioForm.invalid) {
       window.alert('Preencha todos os campos para efetuar o cadastro.');
-      AppUtils.validarForm(['nome', 'sobrenome', 'email', 'senha', 'repitaSenha'], this.usuarioForm);
+      AppUtils.validarForm(['nome', 'sobrenome', 'email', 'senha', 'repitaSenha', 'cargo'], this.usuarioForm);
       return;
     } else {
       this.usuarioDTO = this.usuarioForm.value;

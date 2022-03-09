@@ -1,3 +1,5 @@
+import { EstoqueModel } from "../models/estoque.model";
+
 export interface EquipamentoVO {
 
     idEquipamento: number;
@@ -9,5 +11,5 @@ export interface EquipamentoVO {
     modelo: string;
     cor: string;
     statusEquipamento: string;
-
+    estoque:EstoqueModel;
 }

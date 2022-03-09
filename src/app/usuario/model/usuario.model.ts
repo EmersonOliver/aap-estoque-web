@@ -4,4 +4,5 @@ export interface UsuarioModel{
     emailUsuario:string;
     senhaUsuario:string;
     telefoneUsuario:string;
+    cargo:string;
 }

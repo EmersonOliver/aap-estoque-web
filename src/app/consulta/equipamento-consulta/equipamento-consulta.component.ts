@@ -52,6 +52,9 @@ export class EquipamentoConsultaComponent implements OnInit {
   sucesso:boolean = false;
   erro:boolean = false;
 
+  public page = 1;
+  public lastPage = null;
+
   constructor(
     public consultaService: EquipamentoConsultaService, 
     private spinner:NgxSpinnerService,
@@ -124,7 +127,9 @@ export class EquipamentoConsultaComponent implements OnInit {
       formulario.status,
       formulario.fabricante, formulario.departamento, 1, 'idEquipamento', 'desc').subscribe(
         res => {
-          this.equipamentos = res.body
+          this.equipamentos = res.body;
+          console.log(this.equipamentos)
+          this.lastPage = Number(res.headers.get('X-Total-Pages'));
           this.spinner.hide();
         },error=>{
           console.log(error);
@@ -178,6 +183,7 @@ export class EquipamentoConsultaComponent implements OnInit {
         this.consultaService.pesquisarEquipamento(null, null, null,null, 1, 'idEquipamento', 'desc').subscribe(
             res => {
               this.equipamentos = res.body
+              this.lastPage = Number(res.headers.get('X-Total-Pages'));
               this.spinner.hide();
             },error=>{
               console.log(error);
@@ -226,4 +232,40 @@ export class EquipamentoConsultaComponent implements OnInit {
     this.editarForm.get('uf').setValue(departamento.cidade.uf);
   }
 
+  pageUp() {
+    this.page += 1;
+    this.carregarHistorico();
+  }
+
+  pageDown() {
+    if (this.page > 1) {
+      this.page -= 1;
+      this.carregarHistorico();
+    }
+  }
+
+  goPage(page: number) {
+    this.page = page;
+    this.carregarHistorico();
+  }
+
+  carregarHistorico(){
+    this.spinner.show();
+    let formulario = this.buscarForm.value;
+    this.consultaService.pesquisarEquipamento(
+      formulario.nome,
+      formulario.status,
+      formulario.fabricante, 
+      formulario.departamento, this.page, 'idEquipamento', 'desc').subscribe(
+        res => {
+          this.equipamentos = res.body
+          this.lastPage = Number(res.headers.get('X-Total-Pages'));
+          this.spinner.hide();
+        },error=>{
+          console.log(error);
+          this.spinner.hide();
+        }
+      );
+
+  }
 }
