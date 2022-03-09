@@ -3,7 +3,7 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CONTEXT_AUTH, CONTEXT_USUARIO } from '../app.api';
+import { CONTEXT_API } from '../app.api';
 import { ErrorHandler } from '../app.error-handler';
 import { Token } from './login/criar-conta/models/token.model';
 import { UsuarioDTO } from './login/criar-conta/models/usuario.dto.model';
@@ -24,12 +24,12 @@ export class UsuarioService {
   constructor(private httpClient:HttpClient, private router:Router,private jwtHelper: JwtHelperService) { }
   
   loginUsuario(account:AccountAuthentication):Observable<any>{
-    return this.httpClient.post<any>(`${CONTEXT_AUTH}`, account).pipe(
+    return this.httpClient.post<any>(`${CONTEXT_API}/auth`, account).pipe(
       catchError(ErrorHandler.handlerError)
     );
   }
   criarUsuario(usuario:UsuarioDTO):Observable<any>{
-    return this.httpClient.post<any>(`${CONTEXT_USUARIO}/cadastrar`, usuario).pipe(
+    return this.httpClient.post<any>(`${CONTEXT_API}/usuario/cadastrar`, usuario).pipe(
       catchError(ErrorHandler.handlerError)
     );
   }

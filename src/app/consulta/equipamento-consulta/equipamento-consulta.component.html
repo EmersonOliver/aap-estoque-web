@@ -86,7 +86,13 @@ type = "square-loader"
             <td>{{i?.nome}}</td>
             <td>{{i?.fabricante?.nomeFabricante}}</td>
             <td>{{i?.departamento?.nomeDepartamento}}</td>
-            <td>{{getStatus(i?.statusEquipamento)}}</td>
+            <td class="py-2">
+              {{getStatus(i?.statusEquipamento)}}
+              <i *ngIf="i?.statusEquipamento == 1" class="fas fa-check text-success "></i>
+              <i *ngIf="i?.statusEquipamento == 3" class="fas fa-wrench text-info"></i>
+              <i *ngIf="i?.statusEquipamento == 2"  class="fas fa-ban text-danger"></i>
+              
+            </td>
             <td class="d-flex justify-content-center">
               <div class="row">
                 <div class="col-sm-2 m-2">
@@ -129,12 +135,12 @@ type = "square-loader"
       <div class="modal-body">
         <div class="row">
           <div class="col">
-        <strong>Equipamento:</strong> {{equipamentoVO?.nomeEquipamento}}
+        <strong>Equipamento:</strong> {{equipamentoVO?.nome}}
           </div>
         </div>
         <div class="row">
           <div class="col">
-            <strong>Fabricante:</strong> {{equipamentoVO?.nomeFabricante}}
+            <strong>Fabricante:</strong> {{equipamentoVO?.fabricante?.nomeFabricante}}
           </div>
         </div>
         <div class="row">
@@ -144,7 +150,7 @@ type = "square-loader"
         </div>
         <div class="row">
           <div class="col">
-            <strong>Departamento:</strong> {{equipamentoVO?.nomeDepartamento}}
+            <strong>Departamento:</strong> {{equipamentoVO?.departamento?.nomeDepartamento}}
           </div>
         </div>
         <div class="row">
@@ -180,7 +186,7 @@ type = "square-loader"
   <div class="modal-dialog modal-lg" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="modalEditar">Editando...</h5>
+        <h5 class="modal-title" id="modalEditar">{{funcao}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

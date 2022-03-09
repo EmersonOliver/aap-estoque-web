@@ -42,9 +42,12 @@ export class EquipamentoConsultaComponent implements OnInit {
   buscarForm: FormGroup;
   equipamentoVO = {} as EquipamentoVO
   editarForm : FormGroup;
+  equipamento = {} as EquipamentoModel;
 
   dropdownListStatus = [];
   dropdownStatus = {};
+
+  funcao = 'Editando...';
 
   sucesso:boolean = false;
   erro:boolean = false;
@@ -57,8 +60,10 @@ export class EquipamentoConsultaComponent implements OnInit {
    }
 
   ngOnInit() {
-
-    this.selecionar(this.activatedRoute.snapshot.params['id']);
+    let id = this.activatedRoute.snapshot.params['id'];
+    if(id != undefined){
+      this.selecionar(id);
+    }
 
 
     this.consultaService.carregarParams().subscribe(
@@ -137,11 +142,10 @@ export class EquipamentoConsultaComponent implements OnInit {
 
   selecionar(idEquipamento:number){
     this.spinner.show();
-    let equipamento = {} as EquipamentoModel;
     this.consultaService.detalharEquipamento(idEquipamento).subscribe(
       res=>{
-        equipamento = res;
-        this.toFormEquipamento(equipamento);
+        this.equipamento = res;
+        this.toFormEquipamento(this.equipamento);
         this.spinner.hide();
         $('#modalEditar').modal('show');
       }, error=>{
@@ -154,7 +158,6 @@ export class EquipamentoConsultaComponent implements OnInit {
   onEditar(){
 
     this.spinner.show();
-    
     if (this.editarForm.invalid) {
       window.alert('Preencha todos os campos obrigatórios.')
       AppUtils.validarForm(['nome', 'modelo', 'numeroSerie', 'patrimonio', 
@@ -162,41 +165,34 @@ export class EquipamentoConsultaComponent implements OnInit {
       this.editarForm);
       this.spinner.hide();
       return;
+      
+      
     }
-
-    let estoque = {} as EstoqueDTO;
-    let equipamento = {} as EquipamentoDTO;
-    let cidade = {} as CidadeDTO;
-    let departamento = {} as DepartamentoDTO;
-    let fabricante =  {} as FabricanteDTO;
-    //Estoque
-    estoque.dataEntradaEstoque = this.editarForm.controls.dataEntrada.value;
-    //cidade
-    cidade.cidade = this.editarForm.controls.cidade.value;
-    cidade.estado = this.editarForm.controls.estado.value;
-    cidade.uf = this.editarForm.controls.uf.value;
-    // Departamento
-    departamento.nomeDepartamento = this.editarForm.controls.departamento.value;
-    departamento.cidade = cidade;
+    let equipamentoModel = {} as EquipamentoModel;
+    equipamentoModel = this.editarForm.value;
+    console.log(equipamentoModel)
+    this.consultaService.editarEquipamentoEstoque(this.editarForm.value).subscribe(
+      res=>{
+        console.log(res);
+        this.funcao = 'Editado com sucesso!';
+        this.consultaService.pesquisarEquipamento(null, null, null,null, 1, 'idEquipamento', 'desc').subscribe(
+            res => {
+              this.equipamentos = res.body
+              this.spinner.hide();
+            },error=>{
+              console.log(error);
+              this.spinner.hide();
+            }
+          );
+      }
+    );
+    setTimeout(()=>{
   
-  //  fabricante
-    fabricante.nome = this.editarForm.controls.fabricante.value;
-
-    //Equipamento
-    equipamento.cor = this.editarForm.controls.cor.value;
-    equipamento.modelo = this.editarForm.controls.modelo.value;
-    equipamento.nome = this.editarForm.controls.nome.value;
-    equipamento.numeroSerie = this.editarForm.controls.numeroSerie.value;
-    equipamento.patrimonio = this.editarForm.controls.patrimonio.value;
-    equipamento.statusEquipamento = this.editarForm.controls.status.value;
-    equipamento.departamento = departamento;
-    equipamento.departamento.cidade = cidade;
-    equipamento.fabricante = fabricante;
+      $('#modalEditar').modal('hide');
+      this.funcao = "Editando...";
     
-  //estoque e equipamento
-    estoque.equipamento = equipamento;
-
-   this.spinner.hide();
+    },1000);
+  
   }
   getStatus(status:number):string{
     return this.listaStatus.find(x=> x.value === status).texto;
@@ -223,10 +219,11 @@ export class EquipamentoConsultaComponent implements OnInit {
   selectDepartamento(){
     let departamento = 
     this.params.departamentos.find(x=> x.idDepartamento == this.editarForm.get('idDepartamento').value);
+
+    this.editarForm.get('idDepartamento').setValue(departamento.idDepartamento);
     this.editarForm.get('cidade').setValue(departamento.cidade.cidade);
     this.editarForm.get('estado').setValue(departamento.cidade.estado);
     this.editarForm.get('uf').setValue(departamento.cidade.uf);
-
   }
 
 }

@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CONTEXT_EQUIPAMENTO } from 'src/app/app.api';
+import { CONTEXT_API } from 'src/app/app.api';
 import { ErrorHandler } from 'src/app/app.error-handler';
 import { EstoqueDTO } from 'src/app/core/dtos/estoque.dto.model';
 import { Token } from 'src/app/usuario/login/criar-conta/models/token.model';
@@ -37,7 +37,7 @@ export class EquipamentoService {
   }
 
 cadastrarEntrada(estoque:EstoqueDTO):Observable<any>{
-  return this.http.post<any>(`${CONTEXT_EQUIPAMENTO}/cadastrar`, estoque, this.options).pipe(
+  return this.http.post<any>(`${CONTEXT_API}/equipamento/cadastrar`, estoque, this.options).pipe(
     catchError(ErrorHandler.handlerError)
   );
 

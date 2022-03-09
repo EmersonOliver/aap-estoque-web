@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CONTEXT_DASHBOARD } from '../app.api';
+import { CONTEXT_API } from '../app.api';
 import { ErrorHandler } from '../app.error-handler';
 import { Token } from '../usuario/login/criar-conta/models/token.model';
 import { Dashboard } from './models/dashboard.model';
@@ -40,7 +40,7 @@ export class DashboardService {
   }
 
   dashboard():Observable<any>{
-    return this.http.get<Dashboard>(`${CONTEXT_DASHBOARD}`, this.options).pipe(
+    return this.http.get<Dashboard>(`${CONTEXT_API}/dashboard`, this.options).pipe(
       catchError(ErrorHandler.handlerError)
     );
 

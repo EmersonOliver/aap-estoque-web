@@ -2,7 +2,7 @@ import { HttpClient, HttpHeaders, HttpParams, HttpResponse } from '@angular/comm
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { CONTEXT_EQUIPAMENTO, CONTEXT_PARAMETROS } from 'src/app/app.api';
+import { CONTEXT_API } from 'src/app/app.api';
 import { ErrorHandler } from 'src/app/app.error-handler';
 import { EquipamentoVO } from 'src/app/core/dtos/equipamento.model.vo';
 import { Params } from 'src/app/core/dtos/params.model';
@@ -28,7 +28,7 @@ export class EquipamentoConsultaService {
   }
 
   carregarParams(): Observable<any> {
-    return this.http.get<Params>(`${CONTEXT_PARAMETROS}/listAll`, this.options).pipe(
+    return this.http.get<Params>(`${CONTEXT_API}/parametros/listAll`, this.options).pipe(
       catchError(ErrorHandler.handlerError)
     );
   }
@@ -55,13 +55,19 @@ export class EquipamentoConsultaService {
         params = params.append('departamento', departamento.toString());
       }
 
-      return this.http.get<any>(`${CONTEXT_EQUIPAMENTO}/consultar`, {observe: 'response', params, ...this.options}).pipe(
+      return this.http.get<any>(`${CONTEXT_API}/equipamento/consultar`, {observe: 'response', params, ...this.options}).pipe(
         catchError(ErrorHandler.handlerError)
       );
   }
 
   detalharEquipamento(idEquipamento:number):Observable<EquipamentoModel>{
-    return this.http.get<any>(`${CONTEXT_EQUIPAMENTO}/detalhar/`+idEquipamento, this.options).pipe(
+    return this.http.get<any>(`${CONTEXT_API}/equipamento/detalhar/`+idEquipamento, this.options).pipe(
+      catchError(ErrorHandler.handlerError)
+    );
+  }
+
+  editarEquipamentoEstoque(req:any):Observable<any>{
+    return this.http.put<any>(`${CONTEXT_API}/equipamento/editar`, req, this.options).pipe(
       catchError(ErrorHandler.handlerError)
     );
   }
