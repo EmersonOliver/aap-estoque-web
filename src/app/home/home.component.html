@@ -42,7 +42,81 @@
         </div>
       </div>
       <!-- adicionar novas divs -->
-
+      <div [routerLink]="['/consulta/equipamento']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-success shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-success text-uppercase mb-1">Equipamentos Disponíveis</div>
+                <div class="h5 mb-0 font-weight-bold text-success">{{dashboard?.countEquipamentoDisponiveis}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-laptop fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/consulta/equipamento']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-primary shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-primary text-uppercase mb-1">Equipamentos Funcionando</div>
+                <div class="h5 mb-0 font-weight-bold text-primary">{{dashboard?.countEquipamentoFuncionando}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-laptop fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/consulta/equipamento']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-warning shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-warning text-uppercase mb-1">Equipamentos Em Manutenção</div>
+                <div class="h5 mb-0 font-weight-bold text-warning">{{dashboard?.countEquipamentoEmManutencao}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-laptop fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/consulta/equipamento']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-danger shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-danger text-uppercase mb-1">Equipamentos Danificados</div>
+                <div class="h5 mb-0 font-weight-bold text-danger">{{dashboard?.countEquipamentoDanificado}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-laptop fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div [routerLink]="['/consulta/equipamento']" class="col-xl-3 col-md-6 mb-4" style="cursor:pointer">
+        <div class="card border-left-info shadow h-100 py-2">
+          <div class="card-body">
+            <div class="row no-gutters align-items-center">
+              <div class="col mr-2">
+                <div class="text-sm font-weight-bold text-info text-uppercase mb-1">Equipamentos com funcionários</div>
+                <div class="h5 mb-0 font-weight-bold text-info">{{dashboard?.countEquipamentoAlugados}}</div>
+              </div>
+              <div class="col-auto">
+                <i class="fas fa-laptop fa-2x text-gray-300"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
   </div>
   <!-- /.container-fluid -->

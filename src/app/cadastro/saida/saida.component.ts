@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { EquipamentoConsultaService } from 'src/app/consulta/equipamento-consulta/equipamento-consulta.service';
 import { Params } from 'src/app/core/dtos/params.model';
+import { EquipamentoModel } from 'src/app/core/models/equipamento.model';
 
 declare var $ : any;
 
@@ -28,6 +29,22 @@ export class SaidaComponent implements OnInit {
     }
   ];
 
+  listaStatusEstoque = [
+    {
+      value: 4,
+      texto: 'Em Estoque'
+    },
+    {
+      value: 5,
+      texto: 'Disponível'
+    },
+    {
+      value: 8,
+      texto: 'Novo Dispositivo'
+    }
+
+  ]
+
 
   params = {} as Params;
 
@@ -36,6 +53,7 @@ export class SaidaComponent implements OnInit {
   messageError = '';
   dropdownListStatus = [];
   dropdownStatus = {};
+  listaEquipamentos : EquipamentoModel[];
 
   saidaForm: FormGroup;
 
@@ -77,7 +95,24 @@ export class SaidaComponent implements OnInit {
     });
 
   }
-
+  chooseEquipament(){
+    $('#modalChooseEquip').modal('show');
+    this.consultaService.listaEquipamento().subscribe(
+      res=>{
+        this.listaEquipamentos =res;
+        console.log(res)
+      }, error=>{
+        console.log(error)
+      }
+    )
+  }
+  getStatus(status:number):string{
+    return this.listaStatus.find(x=> x.value === status).texto;
+    }
+  
+    getStatusEstoque(status:number):string{
+      return this.listaStatusEstoque.find(x=> x.value === status).texto;
+    }
 
 
 }

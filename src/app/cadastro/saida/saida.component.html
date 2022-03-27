@@ -55,7 +55,7 @@ type="square-loader"
         </div>
         <div class="row">
           <div class="col-sm-12 py-2">
-            <button class="btn btn-secondary float-right">Buscar Equipamento</button>
+            <button class="btn btn-secondary float-right" type="button" (click)="chooseEquipament()">Buscar Equipamento</button>
           </div>
         </div>
                    <hr />
@@ -78,5 +78,63 @@ type="square-loader"
       <hr />
       <button type="submit" class="btn btn-primary float-right">Salvar</button>
     </form>
+  </div>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="modalChooseEquip" tabindex="-1" role="dialog" aria-labelledby="modalChooseEquipLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalEditar">{{funcao}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="table-responsive mb-4">
+       <table style="border: #dddfeb solid 1px" class="table table-striped dataTable">
+         <thead>
+          <tr class="text-center">
+            <th scope="col">ID</th>
+            <th scope="col">Nome</th>
+            <th scope="col">Fabricante</th>
+            <th scope="col">Departamento</th>
+            <th scope="col">Entrada</th>
+            <th scope="col">Status</th>
+            <th scope="col">Situação</th>
+            <th scope="col">Ações</th>
+          </tr>
+         </thead>
+         <tbody>
+          <tr class="text-center" *ngFor="let i of listaEquipamentos">
+            <td>{{i?.idEquipamento}}</td>
+            <td>{{i?.nome}}</td>
+            <td>{{i?.fabricante?.nomeFabricante}}</td>
+            <td>{{i?.departamento?.nomeDepartamento}}</td>
+            <td>{{i?.estoque?.dataEntrada | date:'dd/MM/yyyy'}}</td>
+            <td class="py-2">
+              {{getStatus(i?.statusEquipamento)}}
+              <i *ngIf="i?.statusEquipamento == 1" class="fas fa-check text-success "></i>
+              <i *ngIf="i?.statusEquipamento == 3" class="fas fa-wrench text-info"></i>
+              <i *ngIf="i?.statusEquipamento == 2"  class="fas fa-ban text-danger"></i>
+            </td>
+            <td>
+               {{getStatusEstoque(i.estoque?.statusEstoque)}}
+            </td>
+            <td class="d-flex justify-content-center">
+              <div class="row">
+                <div class="col-sm-12 m-2">
+                  <a class="text-primary" data-dismiss="modal" title="Adicionar">
+                    <i class="fas fa-plus"></i> Select
+                  </a>
+                </div>
+              </div>
+            </td>
+          </tr>
+         </tbody>
+       </table>
+       </div>
+      </div>
+    </div>
   </div>
 </div>

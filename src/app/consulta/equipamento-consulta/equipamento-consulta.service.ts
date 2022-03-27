@@ -71,6 +71,12 @@ export class EquipamentoConsultaService {
       catchError(ErrorHandler.handlerError)
     );
   }
+
+  listaEquipamento():Observable<EquipamentoModel[]>{
+    return this.http.get<any>(`${CONTEXT_API}/equipamento/listar`, this.options).pipe(
+      catchError(ErrorHandler.handlerError)
+    );
+  }
   
   setToken(token: Token) {
     this.token = token;
